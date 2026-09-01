@@ -1,0 +1,63 @@
+{
+  "name": "@licklider/nomue-mcp",
+  "version": "0.1.0-rc.0",
+  "description": "Local MCP server for scoped nomue Protocol Release 1 Welch Record verification",
+  "license": "Apache-2.0",
+  "homepage": "https://github.com/licklider-ai/nomue-mcp#readme",
+  "bugs": {
+    "url": "https://github.com/licklider-ai/nomue-mcp/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/licklider-ai/nomue-mcp.git"
+  },
+  "mcpName": "io.github.licklider-ai/nomue-mcp",
+  "private": false,
+  "publishConfig": {
+    "access": "public"
+  },
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "files": [
+    "bin/",
+    "src/",
+    "fixtures/",
+    "assets/",
+    "registry/",
+    "README.md",
+    "llms-install.md",
+    "npm-shrinkwrap.json",
+    "server.json",
+    "DEPENDENCY-PIN.json",
+    "NON-CLAIMS.md",
+    "SECURITY.md",
+    "CONTRIBUTING.md",
+    "LICENSE"
+  ],
+  "bin": {
+    "nomue-mcp": "bin/nomue-mcp.js"
+  },
+  "scripts": {
+    "test": "node --test test/*.test.mjs",
+    "test:package": "node scripts/package-smoke.mjs",
+    "prepublishOnly": "npm test && npm run test:package"
+  },
+  "dependencies": {
+    "@licklider/nomue-verifier": "0.2.1-rc.0",
+    "@modelcontextprotocol/server": "2.0.0",
+    "zod": "4.5.4"
+  },
+  "devDependencies": {
+    "@modelcontextprotocol/client": "2.0.0"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "nomue",
+    "welch",
+    "verification",
+    "research-integrity"
+  ]
+}

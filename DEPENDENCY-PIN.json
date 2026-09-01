@@ -1,0 +1,13 @@
+{
+  "mcp_package": "@licklider/nomue-mcp",
+  "mcp_package_version": "0.1.0-rc.0",
+  "transport": "stdio",
+  "verifier_package": "@licklider/nomue-verifier",
+  "verifier_version": "0.2.1-rc.0",
+  "verifier_npm_integrity": "sha512-mF4Cv4j95uir0XNR/T4G/0hTS2Xg0tL3dC7UKQkEsu1H8idSWlWiTnzvtoj5fiWPL97Bo0cfMth1iiOY4pvrVg==",
+  "verifier_npm_git_head": "cfb64aff10944894cbd2ef18dbbf547716f9e7ed",
+  "runtime_dependency_lock": "npm-shrinkwrap.json",
+  "protocol_bundle": "urn:nomue:bundle:itgc-guarantee:0.2.1-draft.1",
+  "protocol_release": "Release 1 Public Draft",
+  "protocol_snapshot": "sha256:fc26c770538abe3598fc27a571ca6e99cc29763e0a25859a80c267ee2d80ab06"
+}
