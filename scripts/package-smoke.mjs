@@ -182,13 +182,9 @@ async function main() {
     const validPath = join(inputDirectory, "valid record.json");
     writeFileSync(validPath, validRecord, { encoding: "utf8", mode: 0o600 });
 
-    const publicCommand =
-      process.platform === "win32" ? process.env.ComSpec ?? "cmd.exe" : shimPath;
-    const publicArgs =
-      process.platform === "win32" ? ["/d", "/s", "/c", `""${shimPath}""`] : [];
     const transport = new StdioClientTransport({
-      command: publicCommand,
-      args: publicArgs,
+      command: shimPath,
+      args: [],
       stderr: "pipe",
     });
     const client = new Client({ name: "nomue-mcp-package-smoke", version: "1.0.0" });

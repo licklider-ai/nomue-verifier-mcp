@@ -45,9 +45,9 @@ equivalent entry:
 "nomue":{"command":"cmd.exe","args":["/d","/s","/c","npx --yes @licklider/nomue-mcp@0.1.0-rc.0"]}
 ```
 
-The repository CI matrix is configured to exercise both launch shapes on their
-applicable operating systems. A clean-profile launch in Claude Desktop, Cursor, and
-Cline remains a release gate after the repository and npm release candidate are public.
+The repository CI matrix exercises the installed npm command shim on Windows, macOS,
+and Linux. A clean-profile launch in Claude Desktop, Cursor, and Cline remains a release
+gate after the repository and npm release candidate are public.
 
 [Add nomue to Cursor](cursor://anysphere.cursor-deeplink/mcp/install?name=nomue&config=eyJjb21tYW5kIjoibnB4IiwiYXJncyI6WyItLXllcyIsIkBsaWNrbGlkZXIvbm9tdWUtbWNwQDAuMS4wLXJjLjAiXX0%3D)
 
