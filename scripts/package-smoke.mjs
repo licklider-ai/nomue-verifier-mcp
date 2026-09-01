@@ -185,7 +185,7 @@ async function main() {
     const publicCommand =
       process.platform === "win32" ? process.env.ComSpec ?? "cmd.exe" : shimPath;
     const publicArgs =
-      process.platform === "win32" ? ["/d", "/s", "/c", `"${shimPath}"`] : [];
+      process.platform === "win32" ? ["/d", "/s", "/c", `""${shimPath}""`] : [];
     const transport = new StdioClientTransport({
       command: publicCommand,
       args: publicArgs,
