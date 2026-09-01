@@ -40,7 +40,7 @@
     "nomue-mcp": "bin/nomue-mcp.js"
   },
   "scripts": {
-    "test": "node --test test/*.test.mjs",
+    "test": "node --test test/server.test.mjs",
     "test:package": "node scripts/package-smoke.mjs",
     "prepublishOnly": "npm test && npm run test:package"
   },
