@@ -173,6 +173,8 @@ async function main() {
       existsSync(shimPath),
       "nomue-mcp executable shim is missing",
     );
+    const installedEntryPoint = join(installedRoot, "bin", "nomue-mcp.js");
+    assert.ok(existsSync(installedEntryPoint), "installed MCP entry point is missing");
 
     const validRecord = readFileSync(join(packageRoot, "fixtures", "valid.json"), "utf8");
     const mismatchRecord = readFileSync(
@@ -183,8 +185,8 @@ async function main() {
     writeFileSync(validPath, validRecord, { encoding: "utf8", mode: 0o600 });
 
     const transport = new StdioClientTransport({
-      command: shimPath,
-      args: [],
+      command: process.execPath,
+      args: [installedEntryPoint],
       stderr: "pipe",
     });
     const client = new Client({ name: "nomue-mcp-package-smoke", version: "1.0.0" });
