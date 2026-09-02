@@ -11,7 +11,7 @@ path. It passes only a small allowlist of operating-system environment variables
 verifier process. It does not dereference Record-supplied URIs or execute
 Record-supplied code.
 
-Each verifier invocation has a 10-second adapter timeout, an 8 MiB stdout limit, and a
+Each verifier invocation has a 60-second adapter timeout, an 8 MiB stdout limit, and a
 64 KiB stderr limit. The verifier independently owns its Record-size and semantic
 resource refusals. Adapter limits produce an MCP tool error rather than a synthetic
 verifier refusal.

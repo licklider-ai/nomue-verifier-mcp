@@ -165,6 +165,10 @@ npm run test:package
 The package smoke test packs and installs the tarball at a path containing spaces,
 starts its generated npm executable shim, lists the tool, calls valid, mismatched, and
 empty Records, checks output preservation, and enforces the 10-second startup budget.
+That budget covers MCP process startup and tool discovery only. Each verifier call is
+a separate resource-bounded child process with a 60-second fail-closed ceiling so a
+cold Node.js/tsx launch on a supported host is not misclassified as an MCP startup
+failure.
 
 ## Security, non-claims, and license
 

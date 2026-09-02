@@ -36,7 +36,10 @@ export const TOOL_DESCRIPTION = [
 
 const MAX_STDOUT_BYTES = 8 * 1024 * 1024;
 const MAX_STDERR_BYTES = 64 * 1024;
-const INVOCATION_TIMEOUT_MS = 10_000;
+// This bounds one verifier invocation; it is intentionally independent of the
+// 10-second MCP startup/discovery budget. Cold Node + tsx startup can exceed
+// that budget on supported Windows hosts even though the MCP server is ready.
+export const VERIFIER_INVOCATION_TIMEOUT_MS = 60_000;
 const ACCEPTED_EXIT_CODES = new Set([0, 2, 3, 4, 5]);
 
 class VerifierInvocationError extends Error {
@@ -109,7 +112,7 @@ function invokeVerifier(recordPath) {
 
     const timeout = setTimeout(
       () => terminate("verifier_timeout"),
-      INVOCATION_TIMEOUT_MS,
+      VERIFIER_INVOCATION_TIMEOUT_MS,
     );
     timeout.unref();
 

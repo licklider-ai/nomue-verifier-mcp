@@ -13,6 +13,7 @@ import {
   SERVER_VERSION,
   TOOL_DESCRIPTION,
   TOOL_NAME,
+  VERIFIER_INVOCATION_TIMEOUT_MS,
   VERIFIER_VERSION,
   runVerifier,
 } from "../src/server.js";
@@ -32,6 +33,10 @@ function withoutGeneratedAt(value) {
 }
 
 test("the adapter invokes the exact published verifier package", async () => {
+  assert.ok(
+    VERIFIER_INVOCATION_TIMEOUT_MS > 10_000,
+    "verifier execution must not reuse the MCP startup/discovery budget",
+  );
   assert.equal(VERIFIER_VERSION, "0.2.1-rc.0");
   const result = await runVerifier(await fixture("valid.json"));
   assert.equal(result.exitCode, 0);
