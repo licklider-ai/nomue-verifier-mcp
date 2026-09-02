@@ -24,12 +24,18 @@ during a release-candidate publication.
 ## 1. Official MCP Registry
 
 The checked-in `server.json` uses the official schema, exact npm version, stdio-only
-transport, and npm ownership field `mcpName=io.github.licklider-ai/nomue-mcp`.
+transport, and npm ownership field `mcpName=io.github.licklider-ai/nomue-mcp`. The
+checked-in publish workflow authenticates with GitHub Actions OIDC, so it does not
+require a reusable token or an interactive browser login. It pins both the publisher
+release and its SHA-256 digest.
 
 ```bash
-mcp-publisher login github
-mcp-publisher publish
+gh workflow run publish-mcp-registry.yml
 ```
+
+Updating `server.json` on `main` also runs the workflow. Keep `id-token: write`
+scoped to this registry-publish workflow and do not combine npm publication with the
+registry metadata publication.
 
 Confirm the registry entry reports:
 
@@ -83,7 +89,11 @@ codes, and non-asserted boundaries, and does not return a blanket VERIFIED verdi
 
 Before submitting, give a clean Cline instance only `README.md` or `llms-install.md`
 and confirm it installs the pinned npm package, lists exactly one tool, and verifies the
-included valid fixture without manual environment setup.
+included valid fixture without manual environment setup. Cline's current submission
+form also requires the publisher to affirm that the server is stable and ready for
+public use. Do not make that affirmation while this package is explicitly a release
+candidate; submit after the stable-release decision or after Cline provides a
+prerelease-specific route.
 
 ## Claim discipline
 

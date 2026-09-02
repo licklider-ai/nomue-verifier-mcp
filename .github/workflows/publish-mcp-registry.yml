@@ -1,0 +1,85 @@
+name: Publish to the official MCP Registry
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - server.json
+      - .github/workflows/publish-mcp-registry.yml
+
+permissions: {}
+
+concurrency:
+  group: mcp-registry-publish
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    name: Validate and publish server.json
+    if: github.repository == 'licklider-ai/nomue-mcp'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
+
+      - name: Install pinned mcp-publisher
+        shell: bash
+        run: |
+          curl --fail --location --proto '=https' --tlsv1.2 \
+            --output mcp-publisher.tar.gz \
+            'https://github.com/modelcontextprotocol/registry/releases/download/v1.8.1/mcp-publisher_linux_amd64.tar.gz'
+          echo 'a06c9096dcb9727c13555b6be26c7effa707b01f06a4c561ba7a3635443cf2cc  mcp-publisher.tar.gz' | sha256sum --check
+          tar --extract --gzip --file mcp-publisher.tar.gz mcp-publisher
+          chmod +x mcp-publisher
+
+      - name: Validate server metadata
+        run: ./mcp-publisher validate server.json
+
+      - name: Authenticate with GitHub Actions OIDC
+        run: ./mcp-publisher login github-oidc
+
+      - name: Publish exact release candidate metadata
+        run: ./mcp-publisher publish server.json
+
+      - name: Confirm the exact live registry entry
+        shell: bash
+        run: |
+          for attempt in {1..6}; do
+            if curl --fail --silent --show-error --get \
+              --data-urlencode 'search=io.github.licklider-ai/nomue-mcp' \
+              --output registry-response.json \
+              'https://registry.modelcontextprotocol.io/v0.1/servers' \
+              && jq --exit-status \
+                --arg name 'io.github.licklider-ai/nomue-mcp' \
+                --arg version '0.1.0-rc.0' \
+                --arg package '@licklider/nomue-mcp' \
+                '
+                  .servers
+                  | any(
+                      (.server // .) as $server
+                      | $server.name == $name
+                        and $server.version == $version
+                        and any(
+                          $server.packages[]?;
+                          .registryType == "npm"
+                            and .identifier == $package
+                            and .version == $version
+                            and .transport.type == "stdio"
+                        )
+                    )
+                ' registry-response.json >/dev/null; then
+              echo 'Exact release candidate is live in the official MCP Registry.'
+              exit 0
+            fi
+            sleep 5
+          done
+
+          echo 'Published entry did not become queryable with the expected metadata.' >&2
+          jq . registry-response.json >&2 || true
+          exit 1
