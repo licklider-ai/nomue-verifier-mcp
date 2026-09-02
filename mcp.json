@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "nomue": {
+      "command": "npx",
+      "args": [
+        "--yes",
+        "@licklider/nomue-mcp@0.1.0-rc.0"
+      ]
+    }
+  }
+}

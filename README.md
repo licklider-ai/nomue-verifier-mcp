@@ -52,6 +52,24 @@ release candidate are public.
 
 [Add nomue to Cursor](cursor://anysphere.cursor-deeplink/mcp/install?name=nomue&config=eyJjb21tYW5kIjoibnB4IiwiYXJncyI6WyItLXllcyIsIkBsaWNrbGlkZXIvbm9tdWUtbWNwQDAuMS4wLXJjLjAiXX0%3D)
 
+### Cursor Plugin wrapper
+
+This repository also contains a Cursor Plugin manifest at
+`.cursor-plugin/plugin.json` and its exact version-pinned `mcp.json`. The wrapper adds
+no rules, prompts, credentials, environment variables, or remote services; it installs
+the same local stdio server configuration shown above. The manifest identifies the
+package as a release candidate rather than implying a stable release.
+
+The checked-in configuration is:
+
+```json
+{"mcpServers":{"nomue":{"command":"npx","args":["--yes","@licklider/nomue-mcp@0.1.0-rc.0"]}}}
+```
+
+The manifest makes the repository ready for a clean-profile Cursor Plugin test and
+Marketplace review. It is not evidence of a live Cursor Marketplace listing; record
+that separately only after Cursor accepts the submission.
+
 ## Tool
 
 ### `verify_nomue_welch_record`
@@ -159,6 +177,7 @@ From this directory:
 ```bash
 npm ci
 npm test
+npm run test:cursor-plugin
 npm run test:package
 ```
 

@@ -1,0 +1,22 @@
+{
+  "name": "nomue-mcp",
+  "displayName": "nomue MCP",
+  "description": "Release-candidate local stdio MCP server for scoped, independent nomue Protocol Release 1 Welch Record verification.",
+  "version": "0.1.0-rc.0",
+  "author": {
+    "name": "Licklider"
+  },
+  "publisher": "Licklider",
+  "homepage": "https://www.licklider.ai/docs/mcp-verification.md",
+  "repository": "https://github.com/licklider-ai/nomue-mcp",
+  "license": "Apache-2.0",
+  "logo": "assets/licklider.svg",
+  "keywords": [
+    "mcp",
+    "nomue",
+    "welch",
+    "verification",
+    "research-integrity"
+  ],
+  "mcpServers": "mcp.json"
+}

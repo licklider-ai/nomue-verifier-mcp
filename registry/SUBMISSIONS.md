@@ -46,21 +46,27 @@ Confirm the registry entry reports:
 
 ## 2. Cursor
 
-The README contains a version-pinned Add to Cursor deeplink and the equivalent
-`mcp.json` entry. Cursor's public documentation currently documents custom `mcp.json`,
-install deeplinks, its own marketplace, and the community `cursor.directory`; it does
-not provide a repository-owned direct submission API equivalent to the official MCP
-Registry publisher.
+The repository contains a version-pinned Add to Cursor deeplink, a root `mcp.json`, and
+the Cursor Plugin manifest `.cursor-plugin/plugin.json`. The wrapper has no variables,
+secrets, rules, prompts, or network endpoint. Its metadata explicitly says
+release-candidate, and `npm run test:cursor-plugin` checks the manifest's constrained
+shape, paths, version alignment, and exact local stdio command.
 
 After npm publication:
 
-1. Test the checked-in deeplink in a clean Cursor profile.
-2. Confirm the listed tool description includes both `Use when` and `Do not use`.
-3. Submit the public repository to `cursor.directory` through its then-current
-   publisher route if a directory listing is desired.
+1. Clone this repository into `~/.cursor/plugins/local/nomue-mcp` (or symlink that
+   directory to a clean checkout), then restart Cursor or run **Developer: Reload
+   Window**.
+2. In **Customize**, confirm the plugin is identified as `nomue-mcp`, contains exactly
+   one MCP server, and requires no variables or credentials.
+3. Confirm the discovered `verify_nomue_welch_record` tool description includes both
+   `Use when` and `Do not use`, and verify the included valid fixture.
+4. Open <https://cursor.com/marketplace/publish> in the publisher's local browser and
+   submit `https://github.com/licklider-ai/nomue-mcp` for manual review.
 
-Do not describe the server as registered with Cursor until an actual directory or
-marketplace listing exists.
+Cursor's Marketplace submission is a browser-authenticated, manually reviewed event;
+it is not performed by the official MCP Registry workflow. Do not describe the server
+as registered with Cursor until an accepted live Marketplace listing exists.
 
 ## 3. Cline MCP Marketplace
 

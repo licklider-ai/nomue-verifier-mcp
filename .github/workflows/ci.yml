@@ -27,6 +27,8 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm test
+      - name: Validate the Cursor Marketplace plugin wrapper
+        run: npm run test:cursor-plugin
       - name: Pack, install, and exercise the public MCP shape
         run: npm run test:package
 

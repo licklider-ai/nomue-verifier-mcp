@@ -41,8 +41,9 @@
   },
   "scripts": {
     "test": "node --test test/server.test.mjs",
+    "test:cursor-plugin": "node scripts/validate-cursor-plugin.mjs",
     "test:package": "node scripts/package-smoke.mjs",
-    "prepublishOnly": "npm test && npm run test:package"
+    "prepublishOnly": "npm test && npm run test:cursor-plugin && npm run test:package"
   },
   "dependencies": {
     "@licklider/nomue-verifier": "0.2.1-rc.0",
