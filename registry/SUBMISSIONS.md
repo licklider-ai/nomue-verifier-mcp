@@ -5,15 +5,21 @@ at the source commit that will be represented by the package.
 
 ## 0. npm release candidate
 
-Publish the prerelease under an explicit non-latest dist-tag, then verify the live
-package metadata before any registry submission:
+Publish the prerelease under the explicit `rc` dist-tag, then verify the live package
+metadata before any registry submission:
 
 ```bash
 npm publish --access public --tag rc
 npm view @licklider/nomue-mcp@0.1.0-rc.0 version dist-tags dist.integrity
 ```
 
-Do not move the `latest` tag during this release-candidate publication.
+The npm public registry may automatically create `latest` for a package's first-ever
+publication even when `--tag rc` is used. If `npm dist-tag rm ... latest` then returns
+HTTP 400, record that registry-created state; do not unpublish the immutable version or
+publish a placeholder stable version to work around it. The required release-channel
+assertion is that `rc` resolves to `0.1.0-rc.0`. All client and registry examples must
+continue to pin the exact prerelease version. Do not intentionally add or move `latest`
+during a release-candidate publication.
 
 ## 1. Official MCP Registry
 
