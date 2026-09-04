@@ -20,7 +20,7 @@ import {
 
 const here = dirname(fileURLToPath(import.meta.url));
 const repositoryRoot = join(here, "..");
-const serverBin = join(here, "../bin/nomue-mcp.js");
+const serverBin = join(here, "../bin/nomue-verifier-mcp.js");
 
 async function fixture(name) {
   return readFile(join(repositoryRoot, "fixtures", name), "utf8");
@@ -95,7 +95,7 @@ test("the method-neutral MCP tool is discoverable, scoped, and byte-preserving",
     args: [serverBin],
     stderr: "pipe",
   });
-  const client = new Client({ name: "nomue-mcp-test", version: "1.0.0" });
+  const client = new Client({ name: "nomue-verifier-mcp-test", version: "1.0.0" });
   const startedAt = performance.now();
 
   try {
@@ -170,7 +170,7 @@ test("MCP does not turn a verifier mismatch into a transport error", async () =>
     args: [serverBin],
     stderr: "pipe",
   });
-  const client = new Client({ name: "nomue-mcp-test", version: "1.0.0" });
+  const client = new Client({ name: "nomue-verifier-mcp-test", version: "1.0.0" });
   try {
     await client.connect(transport);
     const result = await client.callTool({
@@ -186,5 +186,5 @@ test("MCP does not turn a verifier mismatch into a transport error", async () =>
 });
 
 test("package and server versions stay aligned", () => {
-  assert.equal(SERVER_VERSION, "0.2.0-rc.1");
+  assert.equal(SERVER_VERSION, "0.2.0-rc.0");
 });

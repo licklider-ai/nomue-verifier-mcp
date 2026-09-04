@@ -1,4 +1,4 @@
-name: nomue-mcp CI
+name: nomue-verifier-mcp CI
 
 on:
   push:

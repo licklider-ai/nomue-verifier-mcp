@@ -18,13 +18,13 @@ import { StdioClientTransport } from "@modelcontextprotocol/client/stdio";
 
 const packageRoot = join(dirname(fileURLToPath(import.meta.url)), "..");
 const npmCli = process.env.npm_execpath;
-const temporaryRoot = mkdtempSync(join(tmpdir(), "nomue-mcp-package-smoke-"));
+const temporaryRoot = mkdtempSync(join(tmpdir(), "nomue-verifier-mcp-package-smoke-"));
 const packDirectory = join(temporaryRoot, "pack");
 const installDirectory = join(temporaryRoot, "installed package with spaces");
 const inputDirectory = join(temporaryRoot, "input records");
-const expectedPackageName = "@licklider/nomue-mcp";
-const expectedPackageVersion = "0.2.0-rc.1";
-const expectedMcpName = "io.github.licklider-ai/nomue-mcp";
+const expectedPackageName = "@licklider/nomue-verifier-mcp";
+const expectedPackageVersion = "0.2.0-rc.0";
+const expectedMcpName = "io.github.licklider-ai/nomue-verifier-mcp";
 const expectedVerifierVersion = "0.2.1-rc.0";
 const expectedRuntimeDependencies = {
   "@licklider/nomue-verifier": expectedVerifierVersion,
@@ -101,7 +101,7 @@ async function main() {
     assert.ok(existsSync(tarball), `packed tarball is missing: ${tarball}`);
     const packedPaths = new Set(packOutput[0].files.map((file) => file.path));
     for (const required of [
-      "bin/nomue-mcp.js",
+      "bin/nomue-verifier-mcp.js",
       "src/server.js",
       "assets/licklider-400.png",
       "README.md",
@@ -117,9 +117,15 @@ async function main() {
     ]) {
       assert.ok(packedPaths.has(required), `packed tarball omits ${required}`);
     }
-    const packedBin = packOutput[0].files.find((file) => file.path === "bin/nomue-mcp.js");
+    const packedBin = packOutput[0].files.find(
+      (file) => file.path === "bin/nomue-verifier-mcp.js",
+    );
     if (process.platform !== "win32") {
-      assert.equal(packedBin?.mode, 0o755, "packed nomue-mcp launcher must be executable");
+      assert.equal(
+        packedBin?.mode,
+        0o755,
+        "packed nomue-verifier-mcp launcher must be executable",
+      );
     }
 
     const installResult = runNpm(
@@ -139,7 +145,7 @@ async function main() {
       installDirectory,
       "node_modules",
       "@licklider",
-      "nomue-mcp",
+      "nomue-verifier-mcp",
     );
     const installedPackage = parseJson(
       "installed package.json",
@@ -174,13 +180,14 @@ async function main() {
     assert.equal(registry.packages?.[0]?.transport?.type, "stdio");
     assert.equal(registry.remotes, undefined);
 
-    const shimName = process.platform === "win32" ? "nomue-mcp.cmd" : "nomue-mcp";
+    const shimName =
+      process.platform === "win32" ? "nomue-verifier-mcp.cmd" : "nomue-verifier-mcp";
     const shimPath = join(installDirectory, "node_modules", ".bin", shimName);
     assert.ok(
       existsSync(shimPath),
-      "nomue-mcp executable shim is missing",
+      "nomue-verifier-mcp executable shim is missing",
     );
-    const installedEntryPoint = join(installedRoot, "bin", "nomue-mcp.js");
+    const installedEntryPoint = join(installedRoot, "bin", "nomue-verifier-mcp.js");
     assert.ok(existsSync(installedEntryPoint), "installed MCP entry point is missing");
 
     const validRecord = readFileSync(join(packageRoot, "fixtures", "valid.json"), "utf8");
@@ -196,7 +203,7 @@ async function main() {
       args: [installedEntryPoint],
       stderr: "pipe",
     });
-    const client = new Client({ name: "nomue-mcp-package-smoke", version: "1.0.0" });
+    const client = new Client({ name: "nomue-verifier-mcp-package-smoke", version: "1.0.0" });
     const startedAt = performance.now();
     try {
       await client.connect(transport);
@@ -273,7 +280,7 @@ async function main() {
       assert.equal(serverSource.includes(forbidden), false, `runtime network surface: ${forbidden}`);
     }
 
-    console.log("nomue-mcp package-smoke: OK");
+    console.log("nomue-verifier-mcp package-smoke: OK");
   } finally {
     rmSync(temporaryRoot, { recursive: true, force: true });
   }

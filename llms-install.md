@@ -3,19 +3,19 @@
 Add this single server entry to an MCP client configuration:
 
 ```json
-{"nomue-verify":{"command":"npx","args":["--yes","@licklider/nomue-mcp@0.2.0-rc.1"]}}
+{"nomue-verify":{"command":"npx","args":["--yes","@licklider/nomue-verifier-mcp@0.2.0-rc.0"]}}
 ```
 
 For clients whose file format wraps entries in `mcpServers`:
 
 ```json
-{"mcpServers":{"nomue-verify":{"command":"npx","args":["--yes","@licklider/nomue-mcp@0.2.0-rc.1"]}}}
+{"mcpServers":{"nomue-verify":{"command":"npx","args":["--yes","@licklider/nomue-verifier-mcp@0.2.0-rc.0"]}}}
 ```
 
 Windows fallback for clients that do not resolve npm command shims directly:
 
 ```json
-{"nomue-verify":{"command":"cmd.exe","args":["/d","/s","/c","npx --yes @licklider/nomue-mcp@0.2.0-rc.1"]}}
+{"nomue-verify":{"command":"cmd.exe","args":["/d","/s","/c","npx --yes @licklider/nomue-verifier-mcp@0.2.0-rc.0"]}}
 ```
 
 No environment variables, API keys, accounts, URLs, or network transport are required.

@@ -26,7 +26,7 @@ Two local-transport boundaries remain explicit:
 
 Report suspected vulnerabilities privately at:
 
-https://github.com/licklider-ai/nomue-mcp/security/advisories/new
+https://github.com/licklider-ai/nomue-verifier-mcp/security/advisories/new
 
 Do not include private Records, unpublished data, credentials, or exploit details in a
 public issue.

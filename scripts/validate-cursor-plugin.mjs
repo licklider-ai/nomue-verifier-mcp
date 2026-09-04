@@ -33,7 +33,7 @@ for (const key of Object.keys(manifest)) {
 }
 
 assert.match(manifest.name, /^[a-z0-9]([a-z0-9.-]*[a-z0-9])?$/);
-assert.equal(manifest.name, "nomue-mcp");
+assert.equal(manifest.name, "nomue-verifier-mcp");
 assert.equal(manifest.version, packageJson.version);
 assert.match(manifest.version, /-rc\./, "the plugin must not hide release-candidate status");
 assert.match(manifest.description, /Release-candidate/);
@@ -44,7 +44,7 @@ assert.match(manifest.description, /current release supports Welch Records/);
 assert.deepEqual(manifest.author, { name: "Licklider" });
 assert.equal(manifest.publisher, "Licklider");
 assert.equal(manifest.homepage, "https://www.licklider.ai/docs/mcp-verification.md");
-assert.equal(manifest.repository, "https://github.com/licklider-ai/nomue-mcp");
+assert.equal(manifest.repository, "https://github.com/licklider-ai/nomue-verifier-mcp");
 assert.equal(manifest.license, packageJson.license);
 assert.equal(manifest.logo, "assets/licklider.svg");
 assert.ok(existsSync(join(packageRoot, manifest.logo)), "Cursor plugin logo is missing");
@@ -66,4 +66,4 @@ assert.ok(
   "README must contain the exact checked-in Cursor MCP configuration",
 );
 
-console.log("nomue-mcp Cursor plugin validation: OK");
+console.log("nomue-verifier-mcp Cursor plugin validation: OK");
