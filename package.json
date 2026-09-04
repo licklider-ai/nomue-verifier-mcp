@@ -1,17 +1,17 @@
 {
-  "name": "@licklider/nomue-mcp",
-  "version": "0.2.0-rc.1",
+  "name": "@licklider/nomue-verifier-mcp",
+  "version": "0.2.0-rc.0",
   "description": "Local MCP server for scoped verification of nomue Protocol Records under explicitly supported bundles",
   "license": "Apache-2.0",
-  "homepage": "https://github.com/licklider-ai/nomue-mcp#readme",
+  "homepage": "https://github.com/licklider-ai/nomue-verifier-mcp#readme",
   "bugs": {
-    "url": "https://github.com/licklider-ai/nomue-mcp/issues"
+    "url": "https://github.com/licklider-ai/nomue-verifier-mcp/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/licklider-ai/nomue-mcp.git"
+    "url": "git+https://github.com/licklider-ai/nomue-verifier-mcp.git"
   },
-  "mcpName": "io.github.licklider-ai/nomue-mcp",
+  "mcpName": "io.github.licklider-ai/nomue-verifier-mcp",
   "private": false,
   "publishConfig": {
     "access": "public"
@@ -37,7 +37,7 @@
     "LICENSE"
   ],
   "bin": {
-    "nomue-mcp": "bin/nomue-mcp.js"
+    "nomue-verifier-mcp": "bin/nomue-verifier-mcp.js"
   },
   "scripts": {
     "test": "node --test test/server.test.mjs",

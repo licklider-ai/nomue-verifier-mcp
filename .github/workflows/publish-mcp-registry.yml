@@ -2,11 +2,6 @@ name: Publish to the official MCP Registry
 
 on:
   workflow_dispatch:
-  push:
-    branches: [main]
-    paths:
-      - server.json
-      - .github/workflows/publish-mcp-registry.yml
 
 permissions: {}
 
@@ -17,7 +12,7 @@ concurrency:
 jobs:
   publish:
     name: Validate and publish server.json
-    if: github.repository == 'licklider-ai/nomue-mcp'
+    if: github.repository == 'licklider-ai/nomue-verifier-mcp'
     runs-on: ubuntu-latest
     timeout-minutes: 10
     permissions:
@@ -52,13 +47,13 @@ jobs:
         run: |
           for attempt in {1..6}; do
             if curl --fail --silent --show-error --get \
-              --data-urlencode 'search=io.github.licklider-ai/nomue-mcp' \
+              --data-urlencode 'search=io.github.licklider-ai/nomue-verifier-mcp' \
               --output registry-response.json \
               'https://registry.modelcontextprotocol.io/v0.1/servers' \
               && jq --exit-status \
-                --arg name 'io.github.licklider-ai/nomue-mcp' \
-                --arg version '0.2.0-rc.1' \
-                --arg package '@licklider/nomue-mcp' \
+                --arg name 'io.github.licklider-ai/nomue-verifier-mcp' \
+                --arg version '0.2.0-rc.0' \
+                --arg package '@licklider/nomue-verifier-mcp' \
                 '
                   .servers
                   | any(

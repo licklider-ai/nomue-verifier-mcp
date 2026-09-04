@@ -19,7 +19,7 @@ const verifierRoot = dirname(verifierManifestPath);
 const verifierManifest = require(verifierManifestPath);
 const verifierCliSource = join(verifierRoot, "reference", "verifier", "src", "cli.ts");
 
-export const SERVER_NAME = "io.github.licklider-ai/nomue-mcp";
+export const SERVER_NAME = "io.github.licklider-ai/nomue-verifier-mcp";
 export const SERVER_VERSION = packageManifest.version;
 export const VERIFIER_PACKAGE = "@licklider/nomue-verifier";
 export const VERIFIER_VERSION = verifierManifest.version;
@@ -162,7 +162,7 @@ function invokeVerifier(recordPath) {
 }
 
 export async function runVerifier(recordJson) {
-  const temporaryRoot = await mkdtemp(join(tmpdir(), "nomue-mcp-"));
+  const temporaryRoot = await mkdtemp(join(tmpdir(), "nomue-verifier-mcp-"));
   const recordPath = join(temporaryRoot, "record.json");
   const recordBytes = Buffer.from(recordJson, "utf8");
 
@@ -209,7 +209,7 @@ function adapterErrorResult(error) {
     content: [
       {
         type: "text",
-        text: `nomue-mcp adapter error (${code}); no verifier report or refusal was produced`,
+        text: `nomue-verifier-mcp adapter error (${code}); no verifier report or refusal was produced`,
       },
     ],
     _meta: {

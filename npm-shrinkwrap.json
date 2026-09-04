@@ -1,12 +1,12 @@
 {
-  "name": "@licklider/nomue-mcp",
-  "version": "0.2.0-rc.1",
+  "name": "@licklider/nomue-verifier-mcp",
+  "version": "0.2.0-rc.0",
   "lockfileVersion": 3,
   "requires": true,
   "packages": {
     "": {
-      "name": "@licklider/nomue-mcp",
-      "version": "0.2.0-rc.1",
+      "name": "@licklider/nomue-verifier-mcp",
+      "version": "0.2.0-rc.0",
       "license": "Apache-2.0",
       "dependencies": {
         "@licklider/nomue-verifier": "0.2.1-rc.0",
@@ -14,7 +14,7 @@
         "zod": "4.5.4"
       },
       "bin": {
-        "nomue-mcp": "bin/nomue-mcp.js"
+        "nomue-verifier-mcp": "bin/nomue-verifier-mcp.js"
       },
       "devDependencies": {
         "@modelcontextprotocol/client": "2.0.0"

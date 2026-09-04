@@ -4,7 +4,7 @@ Local, issuer-independent verification of nomue Protocol Records for MCP clients
 
 ## Status
 
-`@licklider/nomue-mcp` is an experimental release-candidate package for Phase 1 local
+`@licklider/nomue-verifier-mcp` is an experimental release-candidate package for Phase 1 local
 use. It supports **stdio only**. It does not expose an HTTP endpoint, require an account,
 use an API key, or call a Licklider-hosted service.
 
@@ -19,26 +19,26 @@ The published CLI tarball includes `npm-shrinkwrap.json` in addition to exact di
 dependency pins, so npm versions that honor dependency-package shrinkwraps can install
 the reviewed runtime tree.
 
-Version `0.2.0-rc.1` generalizes the user-facing name from **nomue Welch Record
-Verifier** to **nomue Record Verifier**, the client configuration key from `nomue` to
-`nomue-verify`, and the sole tool name from `verify_nomue_welch_record` to
-`verify_nomue_record`. Because both releases are prereleases and exposing two equivalent
-tools would make agent selection ambiguous, the old tool name is not retained as an
-alias. The supported scientific scope has not expanded: this release still accepts only
-the exact Release 1 Welch bundle identified below.
+Version `0.2.0-rc.0` is the first release candidate under the explicit verifier-MCP
+package identity. It supersedes the experimental `@licklider/nomue-mcp` package, which
+will remain historical and will not be repurposed as the future nomue product MCP. The
+user-facing name remains **nomue Record Verifier**, the client configuration key remains
+`nomue-verify`, and the sole tool remains `verify_nomue_record`. This identity migration
+does not expand the scientific scope: the release still accepts only the exact Release 1
+Welch bundle identified below.
 
 ## Add it to an MCP client
 
 Add this one-line entry inside the client's `mcpServers` object:
 
 ```json
-"nomue-verify":{"command":"npx","args":["--yes","@licklider/nomue-mcp@0.2.0-rc.1"]}
+"nomue-verify":{"command":"npx","args":["--yes","@licklider/nomue-verifier-mcp@0.2.0-rc.0"]}
 ```
 
 A complete configuration file is:
 
 ```json
-{"mcpServers":{"nomue-verify":{"command":"npx","args":["--yes","@licklider/nomue-mcp@0.2.0-rc.1"]}}}
+{"mcpServers":{"nomue-verify":{"command":"npx","args":["--yes","@licklider/nomue-verifier-mcp@0.2.0-rc.0"]}}}
 ```
 
 This is the standard shape for macOS, Linux, and MCP clients that resolve `npx`
@@ -50,7 +50,7 @@ On Windows, a client that does not resolve npm command shims directly can use th
 equivalent entry:
 
 ```json
-"nomue-verify":{"command":"cmd.exe","args":["/d","/s","/c","npx --yes @licklider/nomue-mcp@0.2.0-rc.1"]}
+"nomue-verify":{"command":"cmd.exe","args":["/d","/s","/c","npx --yes @licklider/nomue-verifier-mcp@0.2.0-rc.0"]}
 ```
 
 The repository CI matrix verifies the installed npm command shim and exercises the
@@ -58,7 +58,7 @@ installed package entry point on Windows, macOS, and Linux. A clean-profile laun
 Claude Desktop, Cursor, and Cline remains a release gate after the repository and npm
 release candidate are public.
 
-[Add nomue Record Verifier to Cursor](cursor://anysphere.cursor-deeplink/mcp/install?name=nomue-verify&config=eyJjb21tYW5kIjoibnB4IiwiYXJncyI6WyItLXllcyIsIkBsaWNrbGlkZXIvbm9tdWUtbWNwQDAuMi4wLXJjLjAiXX0%3D)
+[Add nomue Record Verifier to Cursor](cursor://anysphere.cursor-deeplink/mcp/install?name=nomue-verify&config=eyJjb21tYW5kIjoibnB4IiwiYXJncyI6WyItLXllcyIsIkBsaWNrbGlkZXIvbm9tdWUtdmVyaWZpZXItbWNwQDAuMi4wLXJjLjAiXX0)
 
 ### Cursor Plugin wrapper
 
@@ -71,7 +71,7 @@ package as a release candidate rather than implying a stable release.
 The checked-in configuration is:
 
 ```json
-{"mcpServers":{"nomue-verify":{"command":"npx","args":["--yes","@licklider/nomue-mcp@0.2.0-rc.1"]}}}
+{"mcpServers":{"nomue-verify":{"command":"npx","args":["--yes","@licklider/nomue-verifier-mcp@0.2.0-rc.0"]}}}
 ```
 
 The manifest makes the repository ready for a clean-profile Cursor Plugin test and
@@ -175,7 +175,7 @@ check have passed.
 `server.json` and the package `mcpName` are aligned for the official MCP Registry:
 
 ```text
-io.github.licklider-ai/nomue-mcp
+io.github.licklider-ai/nomue-verifier-mcp
 ```
 
 The registry artifact advertises only the npm package and stdio transport. Hosted HTTP,

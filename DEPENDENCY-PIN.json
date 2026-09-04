@@ -1,6 +1,6 @@
 {
-  "mcp_package": "@licklider/nomue-mcp",
-  "mcp_package_version": "0.2.0-rc.1",
+  "mcp_package": "@licklider/nomue-verifier-mcp",
+  "mcp_package_version": "0.2.0-rc.0",
   "transport": "stdio",
   "verifier_package": "@licklider/nomue-verifier",
   "verifier_version": "0.2.1-rc.0",
