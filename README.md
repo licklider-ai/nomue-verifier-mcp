@@ -19,7 +19,7 @@ The published CLI tarball includes `npm-shrinkwrap.json` in addition to exact di
 dependency pins, so npm versions that honor dependency-package shrinkwraps can install
 the reviewed runtime tree.
 
-Version `0.2.0-rc.0` generalizes the user-facing name from **nomue Welch Record
+Version `0.2.0-rc.1` generalizes the user-facing name from **nomue Welch Record
 Verifier** to **nomue Record Verifier**, the client configuration key from `nomue` to
 `nomue-verify`, and the sole tool name from `verify_nomue_welch_record` to
 `verify_nomue_record`. Because both releases are prereleases and exposing two equivalent
@@ -32,13 +32,13 @@ the exact Release 1 Welch bundle identified below.
 Add this one-line entry inside the client's `mcpServers` object:
 
 ```json
-"nomue-verify":{"command":"npx","args":["--yes","@licklider/nomue-mcp@0.2.0-rc.0"]}
+"nomue-verify":{"command":"npx","args":["--yes","@licklider/nomue-mcp@0.2.0-rc.1"]}
 ```
 
 A complete configuration file is:
 
 ```json
-{"mcpServers":{"nomue-verify":{"command":"npx","args":["--yes","@licklider/nomue-mcp@0.2.0-rc.0"]}}}
+{"mcpServers":{"nomue-verify":{"command":"npx","args":["--yes","@licklider/nomue-mcp@0.2.0-rc.1"]}}}
 ```
 
 This is the standard shape for macOS, Linux, and MCP clients that resolve `npx`
@@ -50,7 +50,7 @@ On Windows, a client that does not resolve npm command shims directly can use th
 equivalent entry:
 
 ```json
-"nomue-verify":{"command":"cmd.exe","args":["/d","/s","/c","npx --yes @licklider/nomue-mcp@0.2.0-rc.0"]}
+"nomue-verify":{"command":"cmd.exe","args":["/d","/s","/c","npx --yes @licklider/nomue-mcp@0.2.0-rc.1"]}
 ```
 
 The repository CI matrix verifies the installed npm command shim and exercises the
@@ -71,7 +71,7 @@ package as a release candidate rather than implying a stable release.
 The checked-in configuration is:
 
 ```json
-{"mcpServers":{"nomue-verify":{"command":"npx","args":["--yes","@licklider/nomue-mcp@0.2.0-rc.0"]}}}
+{"mcpServers":{"nomue-verify":{"command":"npx","args":["--yes","@licklider/nomue-mcp@0.2.0-rc.1"]}}}
 ```
 
 The manifest makes the repository ready for a clean-profile Cursor Plugin test and

@@ -10,13 +10,13 @@ metadata before any registry submission:
 
 ```bash
 npm publish --access public --tag rc
-npm view @licklider/nomue-mcp@0.2.0-rc.0 version dist-tags dist.integrity
+npm view @licklider/nomue-mcp@0.2.0-rc.1 version dist-tags dist.integrity
 ```
 
 The npm public registry created `latest=0.1.0-rc.0` during the package's first
 publication even though the release used `--tag rc`, and rejected removal of that tag.
 Do not unpublish the immutable version or publish a placeholder stable version to work
-around it. For this release, intentionally move only `rc` to `0.2.0-rc.0` and leave
+around it. For this release, intentionally move only `rc` to `0.2.0-rc.1` and leave
 `latest` unchanged until a stable-release decision. All client and registry examples
 must continue to pin the exact prerelease version.
 
@@ -39,7 +39,7 @@ registry metadata publication.
 Confirm the registry entry reports:
 
 - name: `io.github.licklider-ai/nomue-mcp`
-- package: `@licklider/nomue-mcp@0.2.0-rc.0`
+- package: `@licklider/nomue-mcp@0.2.0-rc.1`
 - transport: `stdio`
 - no environment variables and no remote endpoint
 
