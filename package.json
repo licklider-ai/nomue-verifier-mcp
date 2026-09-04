@@ -1,7 +1,7 @@
 {
   "name": "@licklider/nomue-mcp",
-  "version": "0.1.0-rc.0",
-  "description": "Local MCP server for scoped nomue Protocol Release 1 Welch Record verification",
+  "version": "0.2.0-rc.0",
+  "description": "Local MCP server for scoped verification of nomue Protocol Records under explicitly supported bundles",
   "license": "Apache-2.0",
   "homepage": "https://github.com/licklider-ai/nomue-mcp#readme",
   "bugs": {

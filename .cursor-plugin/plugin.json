@@ -1,8 +1,8 @@
 {
   "name": "nomue-mcp",
-  "displayName": "nomue MCP",
-  "description": "Release-candidate local stdio MCP server for scoped, independent nomue Protocol Release 1 Welch Record verification.",
-  "version": "0.1.0-rc.0",
+  "displayName": "nomue Record Verifier",
+  "description": "Release-candidate local stdio MCP server for scoped, independent verification of nomue Protocol Records under explicitly supported bundles; the current release supports Welch Records.",
+  "version": "0.2.0-rc.0",
   "author": {
     "name": "Licklider"
   },

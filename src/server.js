@@ -23,13 +23,13 @@ export const SERVER_NAME = "io.github.licklider-ai/nomue-mcp";
 export const SERVER_VERSION = packageManifest.version;
 export const VERIFIER_PACKAGE = "@licklider/nomue-verifier";
 export const VERIFIER_VERSION = verifierManifest.version;
-export const TOOL_NAME = "verify_nomue_welch_record";
+export const TOOL_NAME = "verify_nomue_record";
 export const RELEASE_1_BUNDLE = "urn:nomue:bundle:itgc-guarantee:0.2.1-draft.1";
 
 export const TOOL_DESCRIPTION = [
-  "Experimental release-candidate tool for issuer-independent local verification of a complete nomue Protocol Release 1 Record.",
-  `Use when a Record declares ${RELEASE_1_BUNDLE}, represents independent two-group continuous outcomes using the two-sided Welch two-sample t procedure, and needs scoped structural, digest, admissibility, computability, or recomputation checks.`,
-  "Do not use to calculate a Welch test from raw samples, select a method, judge scientific truth or causality, verify paired-t, Wilcoxon, Mann-Whitney, or interpret an unsupported bundle.",
+  "Experimental release-candidate tool for issuer-independent local verification of a complete nomue Protocol Record under an explicitly supported interpretation bundle.",
+  `Use when a Record declares a supported bundle. The current release supports ${RELEASE_1_BUNDLE} for independent two-group continuous outcomes using the two-sided Welch two-sample t procedure and performs scoped structural, digest, admissibility, computability, or recomputation checks.`,
+  "Do not use to calculate a statistical method from raw samples, select a method, judge scientific truth or causality, or interpret an unsupported bundle. The current release does not support paired-t, Wilcoxon, Mann-Whitney, or other unregistered methods.",
   "The returned artifact is the unmodified verifier report or refusal; it contains no blanket VERIFIED result. Inspect each scoped check, version, reason code, and guarantee boundary.",
   "After a failure or refusal, use the exact reason codes to request a corrected or supported Record; do not silently select another statistical method.",
 ].join(" ");
@@ -230,7 +230,7 @@ export function createServer() {
   server.registerTool(
     TOOL_NAME,
     {
-      title: "Verify nomue Welch Record",
+      title: "Verify nomue Record",
       description: TOOL_DESCRIPTION,
       inputSchema: z
         .object({

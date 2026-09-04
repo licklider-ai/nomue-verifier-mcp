@@ -10,16 +10,15 @@ metadata before any registry submission:
 
 ```bash
 npm publish --access public --tag rc
-npm view @licklider/nomue-mcp@0.1.0-rc.0 version dist-tags dist.integrity
+npm view @licklider/nomue-mcp@0.2.0-rc.0 version dist-tags dist.integrity
 ```
 
-The npm public registry may automatically create `latest` for a package's first-ever
-publication even when `--tag rc` is used. If `npm dist-tag rm ... latest` then returns
-HTTP 400, record that registry-created state; do not unpublish the immutable version or
-publish a placeholder stable version to work around it. The required release-channel
-assertion is that `rc` resolves to `0.1.0-rc.0`. All client and registry examples must
-continue to pin the exact prerelease version. Do not intentionally add or move `latest`
-during a release-candidate publication.
+The npm public registry created `latest=0.1.0-rc.0` during the package's first
+publication even though the release used `--tag rc`, and rejected removal of that tag.
+Do not unpublish the immutable version or publish a placeholder stable version to work
+around it. For this release, intentionally move only `rc` to `0.2.0-rc.0` and leave
+`latest` unchanged until a stable-release decision. All client and registry examples
+must continue to pin the exact prerelease version.
 
 ## 1. Official MCP Registry
 
@@ -40,7 +39,7 @@ registry metadata publication.
 Confirm the registry entry reports:
 
 - name: `io.github.licklider-ai/nomue-mcp`
-- package: `@licklider/nomue-mcp@0.1.0-rc.0`
+- package: `@licklider/nomue-mcp@0.2.0-rc.0`
 - transport: `stdio`
 - no environment variables and no remote endpoint
 
@@ -59,7 +58,7 @@ After npm publication:
    Window**.
 2. In **Customize**, confirm the plugin is identified as `nomue-mcp`, contains exactly
    one MCP server, and requires no variables or credentials.
-3. Confirm the discovered `verify_nomue_welch_record` tool description includes both
+3. Confirm the discovered `verify_nomue_record` tool description includes both
    `Use when` and `Do not use`, and verify the included valid fixture.
 4. Open <https://cursor.com/marketplace/publish> in the publisher's local browser and
    submit `https://github.com/licklider-ai/nomue-mcp` for manual review.
@@ -87,8 +86,9 @@ https://raw.githubusercontent.com/licklider-ai/nomue-mcp/main/assets/licklider-4
 **Reason for addition**
 
 ```text
-nomue MCP gives Cline a zero-auth, local-only way to independently verify scoped
-properties of a nomue Protocol Release 1 Welch Record. It delegates to the exact
+nomue Record Verifier gives Cline a zero-auth, local-only way to independently verify
+scoped properties of nomue Protocol Records under explicitly supported bundles. The
+current release supports the Release 1 Welch Record bundle. It delegates to the exact
 published @licklider/nomue-verifier package, preserves scoped check versions, reason
 codes, and non-asserted boundaries, and does not return a blanket VERIFIED verdict.
 ```

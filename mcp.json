@@ -1,10 +1,10 @@
 {
   "mcpServers": {
-    "nomue": {
+    "nomue-verify": {
       "command": "npx",
       "args": [
         "--yes",
-        "@licklider/nomue-mcp@0.1.0-rc.0"
+        "@licklider/nomue-mcp@0.2.0-rc.0"
       ]
     }
   }

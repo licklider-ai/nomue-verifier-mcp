@@ -1,8 +1,8 @@
 {
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
   "name": "io.github.licklider-ai/nomue-mcp",
-  "title": "nomue Welch Record Verifier",
-  "description": "Local scoped verification of nomue Protocol Release 1 Welch Records; no overall validity claim.",
+  "title": "nomue Record Verifier",
+  "description": "Local scoped verification of nomue Protocol Records under explicitly supported bundles; the current release supports the Release 1 Welch Record bundle.",
   "icons": [
     {
       "src": "https://raw.githubusercontent.com/licklider-ai/nomue-mcp/main/assets/licklider-400.png",
@@ -16,12 +16,12 @@
     "url": "https://github.com/licklider-ai/nomue-mcp",
     "source": "github"
   },
-  "version": "0.1.0-rc.0",
+  "version": "0.2.0-rc.0",
   "packages": [
     {
       "registryType": "npm",
       "identifier": "@licklider/nomue-mcp",
-      "version": "0.1.0-rc.0",
+      "version": "0.2.0-rc.0",
       "transport": {
         "type": "stdio"
       }
