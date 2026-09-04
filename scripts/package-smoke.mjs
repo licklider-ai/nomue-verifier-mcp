@@ -23,7 +23,7 @@ const packDirectory = join(temporaryRoot, "pack");
 const installDirectory = join(temporaryRoot, "installed package with spaces");
 const inputDirectory = join(temporaryRoot, "input records");
 const expectedPackageName = "@licklider/nomue-mcp";
-const expectedPackageVersion = "0.1.0-rc.0";
+const expectedPackageVersion = "0.2.0-rc.0";
 const expectedMcpName = "io.github.licklider-ai/nomue-mcp";
 const expectedVerifierVersion = "0.2.1-rc.0";
 const expectedRuntimeDependencies = {
@@ -161,6 +161,9 @@ async function main() {
       readFileSync(join(installedRoot, "server.json"), "utf8"),
     );
     assert.equal(registry.name, installedPackage.mcpName);
+    assert.equal(registry.title, "nomue Record Verifier");
+    assert.match(registry.description, /nomue Protocol Records/);
+    assert.match(registry.description, /current release supports the Release 1 Welch/);
     assert.equal(registry.version, installedPackage.version);
     assert.equal(registry.packages?.[0]?.identifier, installedPackage.name);
     assert.equal(registry.packages?.[0]?.version, installedPackage.version);
@@ -196,13 +199,13 @@ async function main() {
       const listed = await client.listTools();
       const startupMs = performance.now() - startedAt;
       assert.ok(startupMs < 10_000, `packed server startup took ${startupMs}ms`);
-      assert.deepEqual(listed.tools.map((tool) => tool.name), ["verify_nomue_welch_record"]);
+      assert.deepEqual(listed.tools.map((tool) => tool.name), ["verify_nomue_record"]);
       assert.match(listed.tools[0].description, /Use when/);
       assert.match(listed.tools[0].description, /Do not use/);
       assert.match(listed.tools[0].description, /After a failure or refusal/);
 
       const validResult = await client.callTool({
-        name: "verify_nomue_welch_record",
+        name: "verify_nomue_record",
         arguments: { record_json: validRecord },
       });
       assert.notEqual(validResult.isError, true);
@@ -242,7 +245,7 @@ async function main() {
       );
 
       const mismatchResult = await client.callTool({
-        name: "verify_nomue_welch_record",
+        name: "verify_nomue_record",
         arguments: { record_json: mismatchRecord },
       });
       assert.notEqual(mismatchResult.isError, true);
@@ -250,7 +253,7 @@ async function main() {
       assert.match(mismatchResult.content[0].text, /NRS-DECLARED-RESULT-MISMATCH/);
 
       const emptyResult = await client.callTool({
-        name: "verify_nomue_welch_record",
+        name: "verify_nomue_record",
         arguments: { record_json: "" },
       });
       assert.notEqual(emptyResult.isError, true);

@@ -1,6 +1,6 @@
-# nomue MCP — local Welch Record verification
+# nomue Record Verifier
 
-Local, issuer-independent nomue Record verification for MCP clients.
+Local, issuer-independent verification of nomue Protocol Records for MCP clients.
 
 ## Status
 
@@ -19,18 +19,26 @@ The published CLI tarball includes `npm-shrinkwrap.json` in addition to exact di
 dependency pins, so npm versions that honor dependency-package shrinkwraps can install
 the reviewed runtime tree.
 
+Version `0.2.0-rc.0` generalizes the user-facing name from **nomue Welch Record
+Verifier** to **nomue Record Verifier**, the client configuration key from `nomue` to
+`nomue-verify`, and the sole tool name from `verify_nomue_welch_record` to
+`verify_nomue_record`. Because both releases are prereleases and exposing two equivalent
+tools would make agent selection ambiguous, the old tool name is not retained as an
+alias. The supported scientific scope has not expanded: this release still accepts only
+the exact Release 1 Welch bundle identified below.
+
 ## Add it to an MCP client
 
 Add this one-line entry inside the client's `mcpServers` object:
 
 ```json
-"nomue":{"command":"npx","args":["--yes","@licklider/nomue-mcp@0.1.0-rc.0"]}
+"nomue-verify":{"command":"npx","args":["--yes","@licklider/nomue-mcp@0.2.0-rc.0"]}
 ```
 
 A complete configuration file is:
 
 ```json
-{"mcpServers":{"nomue":{"command":"npx","args":["--yes","@licklider/nomue-mcp@0.1.0-rc.0"]}}}
+{"mcpServers":{"nomue-verify":{"command":"npx","args":["--yes","@licklider/nomue-mcp@0.2.0-rc.0"]}}}
 ```
 
 This is the standard shape for macOS, Linux, and MCP clients that resolve `npx`
@@ -42,7 +50,7 @@ On Windows, a client that does not resolve npm command shims directly can use th
 equivalent entry:
 
 ```json
-"nomue":{"command":"cmd.exe","args":["/d","/s","/c","npx --yes @licklider/nomue-mcp@0.1.0-rc.0"]}
+"nomue-verify":{"command":"cmd.exe","args":["/d","/s","/c","npx --yes @licklider/nomue-mcp@0.2.0-rc.0"]}
 ```
 
 The repository CI matrix verifies the installed npm command shim and exercises the
@@ -50,7 +58,7 @@ installed package entry point on Windows, macOS, and Linux. A clean-profile laun
 Claude Desktop, Cursor, and Cline remains a release gate after the repository and npm
 release candidate are public.
 
-[Add nomue to Cursor](cursor://anysphere.cursor-deeplink/mcp/install?name=nomue&config=eyJjb21tYW5kIjoibnB4IiwiYXJncyI6WyItLXllcyIsIkBsaWNrbGlkZXIvbm9tdWUtbWNwQDAuMS4wLXJjLjAiXX0%3D)
+[Add nomue Record Verifier to Cursor](cursor://anysphere.cursor-deeplink/mcp/install?name=nomue-verify&config=eyJjb21tYW5kIjoibnB4IiwiYXJncyI6WyItLXllcyIsIkBsaWNrbGlkZXIvbm9tdWUtbWNwQDAuMi4wLXJjLjAiXX0%3D)
 
 ### Cursor Plugin wrapper
 
@@ -63,7 +71,7 @@ package as a release candidate rather than implying a stable release.
 The checked-in configuration is:
 
 ```json
-{"mcpServers":{"nomue":{"command":"npx","args":["--yes","@licklider/nomue-mcp@0.1.0-rc.0"]}}}
+{"mcpServers":{"nomue-verify":{"command":"npx","args":["--yes","@licklider/nomue-mcp@0.2.0-rc.0"]}}}
 ```
 
 The manifest makes the repository ready for a clean-profile Cursor Plugin test and
@@ -72,7 +80,12 @@ that separately only after Cursor accepts the submission.
 
 ## Tool
 
-### `verify_nomue_welch_record`
+### `verify_nomue_record`
+
+The tool name is method-neutral because bundle dispatch, rather than the MCP server or
+the caller, determines which registered verification semantics apply. The current
+release supports only the exact Welch bundle below. Unsupported bundles are refused
+without fallback or silent method switching.
 
 **Use when:** you already have a complete nomue Record declaring the exact public
 Release 1 bundle

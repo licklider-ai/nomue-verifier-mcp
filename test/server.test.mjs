@@ -89,7 +89,7 @@ test("parse, routing, and resource refusals preserve verifier exit codes", async
   assert.equal(resourceRefusal.output.refusal_kind, "resource_limit");
 });
 
-test("the MCP tool is discoverable, narrow, and byte-preserving", async () => {
+test("the method-neutral MCP tool is discoverable, scoped, and byte-preserving", async () => {
   const transport = new StdioClientTransport({
     command: process.execPath,
     args: [serverBin],
@@ -186,5 +186,5 @@ test("MCP does not turn a verifier mismatch into a transport error", async () =>
 });
 
 test("package and server versions stay aligned", () => {
-  assert.equal(SERVER_VERSION, "0.1.0-rc.0");
+  assert.equal(SERVER_VERSION, "0.2.0-rc.0");
 });

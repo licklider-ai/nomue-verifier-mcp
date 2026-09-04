@@ -57,7 +57,7 @@ jobs:
               'https://registry.modelcontextprotocol.io/v0.1/servers' \
               && jq --exit-status \
                 --arg name 'io.github.licklider-ai/nomue-mcp' \
-                --arg version '0.1.0-rc.0' \
+                --arg version '0.2.0-rc.0' \
                 --arg package '@licklider/nomue-mcp' \
                 '
                   .servers
