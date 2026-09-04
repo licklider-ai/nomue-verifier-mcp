@@ -1,12 +1,12 @@
 {
   "name": "@licklider/nomue-mcp",
-  "version": "0.2.0-rc.0",
+  "version": "0.2.0-rc.1",
   "lockfileVersion": 3,
   "requires": true,
   "packages": {
     "": {
       "name": "@licklider/nomue-mcp",
-      "version": "0.2.0-rc.0",
+      "version": "0.2.0-rc.1",
       "license": "Apache-2.0",
       "dependencies": {
         "@licklider/nomue-verifier": "0.2.1-rc.0",

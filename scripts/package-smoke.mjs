@@ -23,7 +23,7 @@ const packDirectory = join(temporaryRoot, "pack");
 const installDirectory = join(temporaryRoot, "installed package with spaces");
 const inputDirectory = join(temporaryRoot, "input records");
 const expectedPackageName = "@licklider/nomue-mcp";
-const expectedPackageVersion = "0.2.0-rc.0";
+const expectedPackageVersion = "0.2.0-rc.1";
 const expectedMcpName = "io.github.licklider-ai/nomue-mcp";
 const expectedVerifierVersion = "0.2.1-rc.0";
 const expectedRuntimeDependencies = {
@@ -162,6 +162,10 @@ async function main() {
     );
     assert.equal(registry.name, installedPackage.mcpName);
     assert.equal(registry.title, "nomue Record Verifier");
+    assert.ok(
+      registry.description.length <= 100,
+      "official MCP Registry description must be at most 100 characters",
+    );
     assert.match(registry.description, /nomue Protocol Records/);
     assert.match(registry.description, /current release supports the Release 1 Welch/);
     assert.equal(registry.version, installedPackage.version);
