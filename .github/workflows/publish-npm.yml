@@ -2,9 +2,6 @@ name: Publish npm release candidate
 
 on:
   workflow_dispatch:
-  push:
-    branches:
-      - main
 
 permissions:
   contents: read
