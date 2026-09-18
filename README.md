@@ -11,7 +11,7 @@ use an API key, or call a Licklider-hosted service.
 The server is a thin adapter around the exact npm dependency:
 
 ```text
-@licklider/nomue-verifier@0.2.1-rc.0
+@licklider/nomue-verifier@0.2.1-rc.1
 ```
 
 It does not implement statistical or Protocol semantics independently.
@@ -19,9 +19,10 @@ The published CLI tarball includes `npm-shrinkwrap.json` in addition to exact di
 dependency pins, so npm versions that honor dependency-package shrinkwraps can install
 the reviewed runtime tree.
 
-Version `0.2.0-rc.0` is the first release candidate under the explicit verifier-MCP
-package identity. It supersedes the experimental `@licklider/nomue-mcp` package, which
-will remain historical and will not be repurposed as the future nomue product MCP. The
+Version `0.2.0-rc.1` updates the exact verifier dependency to carry the df=1 Student-t
+center precision correction. It follows the first release candidate under the explicit
+verifier-MCP package identity. The experimental `@licklider/nomue-mcp` package remains
+historical and will not be repurposed as the future nomue product MCP. The
 user-facing name remains **nomue Record Verifier**, the client configuration key remains
 `nomue-verify`, and the sole tool remains `verify_nomue_record`. This identity migration
 does not expand the scientific scope: the release still accepts only the exact Release 1
@@ -32,13 +33,13 @@ Welch bundle identified below.
 Add this one-line entry inside the client's `mcpServers` object:
 
 ```json
-"nomue-verify":{"command":"npx","args":["--yes","@licklider/nomue-verifier-mcp@0.2.0-rc.0"]}
+"nomue-verify":{"command":"npx","args":["--yes","@licklider/nomue-verifier-mcp@0.2.0-rc.1"]}
 ```
 
 A complete configuration file is:
 
 ```json
-{"mcpServers":{"nomue-verify":{"command":"npx","args":["--yes","@licklider/nomue-verifier-mcp@0.2.0-rc.0"]}}}
+{"mcpServers":{"nomue-verify":{"command":"npx","args":["--yes","@licklider/nomue-verifier-mcp@0.2.0-rc.1"]}}}
 ```
 
 This is the standard shape for macOS, Linux, and MCP clients that resolve `npx`
@@ -50,7 +51,7 @@ On Windows, a client that does not resolve npm command shims directly can use th
 equivalent entry:
 
 ```json
-"nomue-verify":{"command":"cmd.exe","args":["/d","/s","/c","npx --yes @licklider/nomue-verifier-mcp@0.2.0-rc.0"]}
+"nomue-verify":{"command":"cmd.exe","args":["/d","/s","/c","npx --yes @licklider/nomue-verifier-mcp@0.2.0-rc.1"]}
 ```
 
 The repository CI matrix verifies the installed npm command shim and exercises the
@@ -58,7 +59,7 @@ installed package entry point on Windows, macOS, and Linux. A clean-profile laun
 Claude Desktop, Cursor, and Cline remains a release gate after the repository and npm
 release candidate are public.
 
-[Add nomue Record Verifier to Cursor](cursor://anysphere.cursor-deeplink/mcp/install?name=nomue-verify&config=eyJjb21tYW5kIjoibnB4IiwiYXJncyI6WyItLXllcyIsIkBsaWNrbGlkZXIvbm9tdWUtdmVyaWZpZXItbWNwQDAuMi4wLXJjLjAiXX0)
+[Add nomue Record Verifier to Cursor](cursor://anysphere.cursor-deeplink/mcp/install?name=nomue-verify&config=eyJjb21tYW5kIjoibnB4IiwiYXJncyI6WyItLXllcyIsIkBsaWNrbGlkZXIvbm9tdWUtdmVyaWZpZXItbWNwQDAuMi4wLXJjLjEiXX0%3D)
 
 ### Cursor Plugin wrapper
 
@@ -71,7 +72,7 @@ package as a release candidate rather than implying a stable release.
 The checked-in configuration is:
 
 ```json
-{"mcpServers":{"nomue-verify":{"command":"npx","args":["--yes","@licklider/nomue-verifier-mcp@0.2.0-rc.0"]}}}
+{"mcpServers":{"nomue-verify":{"command":"npx","args":["--yes","@licklider/nomue-verifier-mcp@0.2.0-rc.1"]}}}
 ```
 
 The manifest makes the repository ready for a clean-profile Cursor Plugin test and
@@ -147,7 +148,7 @@ scientific validity.
 
 The MCP response preserves the bytes from the **same underlying verifier invocation**;
 the input and output SHA-256 metadata make that preservation testable. A separate replay
-with `@licklider/nomue-verifier@0.2.1-rc.0` reproduces the substantive artifact exactly, but
+with `@licklider/nomue-verifier@0.2.1-rc.1` reproduces the substantive artifact exactly, but
 the verifier intentionally creates a fresh top-level `generated_at` timestamp on each
 run. Therefore two separate invocations cannot honestly be described as byte-identical.
 Tests require equality of every other field and byte-for-byte preservation within the
@@ -156,7 +157,7 @@ MCP invocation.
 To replay independently, save the same `record_json` text and run:
 
 ```bash
-npx --yes @licklider/nomue-verifier@0.2.1-rc.0 verify ./record.json --format json-compact
+npx --yes @licklider/nomue-verifier@0.2.1-rc.1 verify ./record.json --format json-compact
 ```
 
 ## Supported environment
