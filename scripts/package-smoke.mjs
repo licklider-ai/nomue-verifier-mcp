@@ -23,9 +23,9 @@ const packDirectory = join(temporaryRoot, "pack");
 const installDirectory = join(temporaryRoot, "installed package with spaces");
 const inputDirectory = join(temporaryRoot, "input records");
 const expectedPackageName = "@licklider/nomue-verifier-mcp";
-const expectedPackageVersion = "0.2.0-rc.0";
+const expectedPackageVersion = "0.2.0-rc.1";
 const expectedMcpName = "io.github.licklider-ai/nomue-verifier-mcp";
-const expectedVerifierVersion = "0.2.1-rc.0";
+const expectedVerifierVersion = "0.2.1-rc.1";
 const expectedRuntimeDependencies = {
   "@licklider/nomue-verifier": expectedVerifierVersion,
   "@modelcontextprotocol/server": "2.0.0",

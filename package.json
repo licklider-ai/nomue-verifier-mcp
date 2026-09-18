@@ -1,6 +1,6 @@
 {
   "name": "@licklider/nomue-verifier-mcp",
-  "version": "0.2.0-rc.0",
+  "version": "0.2.0-rc.1",
   "description": "Local MCP server for scoped verification of nomue Protocol Records under explicitly supported bundles",
   "license": "Apache-2.0",
   "homepage": "https://github.com/licklider-ai/nomue-verifier-mcp#readme",
@@ -46,7 +46,7 @@
     "prepublishOnly": "npm test && npm run test:cursor-plugin && npm run test:package"
   },
   "dependencies": {
-    "@licklider/nomue-verifier": "0.2.1-rc.0",
+    "@licklider/nomue-verifier": "0.2.1-rc.1",
     "@modelcontextprotocol/server": "2.0.0",
     "zod": "4.5.4"
   },

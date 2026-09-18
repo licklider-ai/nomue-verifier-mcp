@@ -16,12 +16,12 @@
     "url": "https://github.com/licklider-ai/nomue-verifier-mcp",
     "source": "github"
   },
-  "version": "0.2.0-rc.0",
+  "version": "0.2.0-rc.1",
   "packages": [
     {
       "registryType": "npm",
       "identifier": "@licklider/nomue-verifier-mcp",
-      "version": "0.2.0-rc.0",
+      "version": "0.2.0-rc.1",
       "transport": {
         "type": "stdio"
       }

@@ -11,7 +11,7 @@ metadata before any registry submission:
 
 ```bash
 npm publish --access public --tag rc
-npm view @licklider/nomue-verifier-mcp@0.2.0-rc.0 version dist-tags dist.integrity
+npm view @licklider/nomue-verifier-mcp@0.2.0-rc.1 version dist-tags dist.integrity
 ```
 
 This is the first publication under the explicit verifier-MCP package identity. Verify
@@ -44,7 +44,7 @@ and do not combine npm publication with registry metadata publication.
 Confirm the registry entry reports:
 
 - name: `io.github.licklider-ai/nomue-verifier-mcp`
-- package: `@licklider/nomue-verifier-mcp@0.2.0-rc.0`
+- package: `@licklider/nomue-verifier-mcp@0.2.0-rc.1`
 - transport: `stdio`
 - no environment variables and no remote endpoint
 

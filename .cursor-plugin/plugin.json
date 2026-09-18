@@ -2,7 +2,7 @@
   "name": "nomue-verifier-mcp",
   "displayName": "nomue Record Verifier",
   "description": "Release-candidate local stdio MCP server for scoped, independent verification of nomue Protocol Records under explicitly supported bundles; the current release supports Welch Records.",
-  "version": "0.2.0-rc.0",
+  "version": "0.2.0-rc.1",
   "author": {
     "name": "Licklider"
   },

@@ -1,15 +1,15 @@
 {
   "name": "@licklider/nomue-verifier-mcp",
-  "version": "0.2.0-rc.0",
+  "version": "0.2.0-rc.1",
   "lockfileVersion": 3,
   "requires": true,
   "packages": {
     "": {
       "name": "@licklider/nomue-verifier-mcp",
-      "version": "0.2.0-rc.0",
+      "version": "0.2.0-rc.1",
       "license": "Apache-2.0",
       "dependencies": {
-        "@licklider/nomue-verifier": "0.2.1-rc.0",
+        "@licklider/nomue-verifier": "0.2.1-rc.1",
         "@modelcontextprotocol/server": "2.0.0",
         "zod": "4.5.4"
       },
@@ -440,9 +440,9 @@
       }
     },
     "node_modules/@licklider/nomue-verifier": {
-      "version": "0.2.1-rc.0",
-      "resolved": "https://registry.npmjs.org/@licklider/nomue-verifier/-/nomue-verifier-0.2.1-rc.0.tgz",
-      "integrity": "sha512-mF4Cv4j95uir0XNR/T4G/0hTS2Xg0tL3dC7UKQkEsu1H8idSWlWiTnzvtoj5fiWPL97Bo0cfMth1iiOY4pvrVg==",
+      "version": "0.2.1-rc.1",
+      "resolved": "https://registry.npmjs.org/@licklider/nomue-verifier/-/nomue-verifier-0.2.1-rc.1.tgz",
+      "integrity": "sha512-HYHKxTYmnPUFp4ZZ+/smGoSrpcQiu8dn+WKXNiW0BfJLmTMn7q9o0P6J1KQLSajhi5CzZPheH8xBVlOJiWU9ZA==",
       "license": "Apache-2.0",
       "dependencies": {
         "@stdlib/stats-base-dists-t-cdf": "0.2.3",

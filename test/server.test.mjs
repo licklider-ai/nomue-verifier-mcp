@@ -37,7 +37,7 @@ test("the adapter invokes the exact published verifier package", async () => {
     VERIFIER_INVOCATION_TIMEOUT_MS > 10_000,
     "verifier execution must not reuse the MCP startup/discovery budget",
   );
-  assert.equal(VERIFIER_VERSION, "0.2.1-rc.0");
+  assert.equal(VERIFIER_VERSION, "0.2.1-rc.1");
   const result = await runVerifier(await fixture("valid.json"));
   assert.equal(result.exitCode, 0);
   assert.equal(result.output.interpretation_bundle_id, RELEASE_1_BUNDLE);
@@ -186,5 +186,5 @@ test("MCP does not turn a verifier mismatch into a transport error", async () =>
 });
 
 test("package and server versions stay aligned", () => {
-  assert.equal(SERVER_VERSION, "0.2.0-rc.0");
+  assert.equal(SERVER_VERSION, "0.2.0-rc.1");
 });
